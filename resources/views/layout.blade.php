@@ -9,7 +9,12 @@
     {{-- FONTS --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     {{-- Bootstrap CSS --}}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+{{--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">--}}
+    {{--JS--}}
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="antialiased">
 {{-- NAVBAR --}}
@@ -29,6 +34,8 @@
                     <a class="nav-link" href="{{ route('task.create') }}">New Task</a>
                 </li>
                 @endauth
+            </ul>
+            <ul class="navbar-nav ms-auto">
                 @guest()
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('user.login') }}">Login</a>
@@ -41,8 +48,8 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('user.logout') }}">Logout</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('user.register') }}">Register</a>
+                    <li class="nav-item ms-auto">
+                        <a class="nav-link" href="{{ route('user.dashboard') }}">My Profile</a>
                     </li>
                 @endauth
             </ul>

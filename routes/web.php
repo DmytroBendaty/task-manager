@@ -49,6 +49,16 @@ Route::name('user.')->group(function () {
     })->name('register');
 
     Route::post('/register', [\App\Http\Controllers\RegisterController::class, 'save']);
+
+    Route::middleware('auth')->group(function () {
+        Route::get('/dashboard', [\App\Http\Controllers\UserController::class, 'dashboard'])->name('dashboard');
+        Route::post('/dashboard/update', [\App\Http\Controllers\UserController::class, 'update'])->name('update');
+    });
+
+//    Route::middleware(['auth'])->group(function () {
+//        Route::get('/dashboard', [\App\Http\Controllers\UserController::class, 'dashboard'])->name('user.dashboard');
+//        //Route::post('/dashboard/update', [\App\Http\Controllers\UserController::class, 'update'])->name('user.update');
+//    });
 });
 
 /*

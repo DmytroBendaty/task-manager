@@ -23,10 +23,6 @@ class TaskController extends Controller
             $message = ' You are not logged in, please log in to see and create tasks';
             return view('index', ['tasks' => collect(), 'message' => $message]);
         }
-//        $tasks = auth()->user()->tasks()->orderBy('id', 'desc')->get();
-//        return view('index', compact('tasks'));
-//        $tasks = Task::orderBy('id','desc')->get();
-//        return view('index', compact('tasks'));
     }
 
     /**
@@ -61,19 +57,6 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-//        $request->validate([
-//            'title' => 'required',
-//        ]);
-//
-//        $task = new Task();
-//        $task->title = $request->title;
-//        $task->description = $request->description;
-//        $task->status = $request->status;
-//        $task->email = $request->user()->email;
-//        $task->save();
-//        $user = User();
-//        return redirect()->route('index');
-
         $validated = $request->validate([
             'title' => 'required|max:255',
             'description' => 'required',

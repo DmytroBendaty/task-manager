@@ -16,14 +16,7 @@ use App\Http\Controllers\TaskController;
 Route::get('/', [\App\Http\Controllers\TaskController::class, 'index'])->name('index');
 Route::resource('task', \App\Http\Controllers\TaskController::class);
 Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.index')->middleware('auth');
-//Route::get('/tasks', [\App\Http\Controllers\TaskController::class, 'index'])->middleware('auth');
 
-//Auth::routes();
-/*
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-*/
 Route::name('user.')->group(function () {
     Route::view('/private', 'private')->middleware(['auth'])->name('private');
 
@@ -55,12 +48,9 @@ Route::name('user.')->group(function () {
         Route::post('/dashboard/update', [\App\Http\Controllers\UserController::class, 'update'])->name('update');
     });
 
-//    Route::middleware(['auth'])->group(function () {
-//        Route::get('/dashboard', [\App\Http\Controllers\UserController::class, 'dashboard'])->name('user.dashboard');
-//        //Route::post('/dashboard/update', [\App\Http\Controllers\UserController::class, 'update'])->name('user.update');
-//    });
 });
 
 /*
 require __DIR__.'/auth.php';
 */
+

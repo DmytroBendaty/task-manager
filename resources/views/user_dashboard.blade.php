@@ -13,7 +13,6 @@
                     <input type="email" id="email" name="email" value="{{ $user->email }}" required>
                 </div>
                 <br>
-                <!-- Додаткові поля для редагування профілю -->
                 <button type="submit">Update</button>
             </form>
         </div>
@@ -21,7 +20,6 @@
         <br>
         <div>
             <h2>Your Tasks</h2>
-            <!-- Add code to display tasks -->
             @if ($tasks->isEmpty())
                 <div class="alert alert-danger p-2">
                     No Task Found. Please Create New Task
@@ -83,7 +81,6 @@
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // Chart.js example
             var ctx = document.getElementById('taskChart').getContext('2d');
             var taskChart = new Chart(ctx, {
                 type: 'bar',

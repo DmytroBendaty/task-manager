@@ -17,6 +17,9 @@ Route::get('/', [\App\Http\Controllers\TaskController::class, 'index'])->name('i
 Route::resource('task', \App\Http\Controllers\TaskController::class);
 Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.index')->middleware('auth');
 
+Route::get('/tasks/{id}/estimate', [TaskController::class, 'showEstimateForm'])->name('tasks.estimate');
+Route::post('/tasks/{id}/calculate-estimate', [TaskController::class, 'calculateEstimate'])->name('tasks.calculateEstimate');
+
 Route::name('user.')->group(function () {
     Route::view('/private', 'private')->middleware(['auth'])->name('private');
 

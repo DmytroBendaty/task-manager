@@ -145,11 +145,12 @@ class TaskController extends Controller
     public function showEstimateForm($id)
     {
         $task = Task::findOrFail($id);
-        return view('tasks.estimate', compact('task'));
+        return view('estimate', compact('task'));
     }
 
     public function calculateEstimate(Request $request, $id)
     {
+        $task = Task::findOrFail($id);
         // Валідація вхідних даних
         $request->validate([
             'optimistic_time' => 'required|numeric|min:0',
@@ -166,7 +167,7 @@ class TaskController extends Controller
         $estimate = ($optimistic + 4 * $likely + $pessimistic) / 6;
 
         // Повернення результату на сторінку з результатами
-        return view('tasks.estimate_result', compact('task', 'estimate'));
+        return view('estimate_result', compact('task', 'estimate'));
     }
 }
 

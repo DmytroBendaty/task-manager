@@ -55,6 +55,9 @@
                                 <small>Last Updated - {{ $task->updated_at->diffForHumans() }} </small>
                             </div>
                             <div class="float-end">
+                                <a href="{{ route('tasks.estimate', $task->id) }}" class="btn btn-success">
+                                    <i class="fa-solid fa-calculator"></i> Estimate
+                                </a>
                                 <a href="{{ route('task.edit', $task->id) }}" class="btn btn-success">
                                     <i class="fa fa-edit"></i> Edit
                                 </a>

@@ -141,4 +141,32 @@ class TaskController extends Controller
         $task->delete();
         return redirect()->route('index');
     }
+
+    public function showEstimateForm($id)
+    {
+        $task = Task::findOrFail($id);
+        return view('tasks.estimate', compact('task'));
+    }
+
+    public function calculateEstimate(Request $request, $id)
+    {
+        // Валідація вхідних даних
+        $request->validate([
+            'optimistic_time' => 'required|numeric|min:0',
+            'pessimistic_time' => 'required|numeric|min:0',
+            'likely_time' => 'required|numeric|min:0',
+        ]);
+
+        // Отримання даних із запиту
+        $optimistic = $request->input('optimistic_time');
+        $pessimistic = $request->input('pessimistic_time');
+        $likely = $request->input('likely_time');
+
+        // Розрахунок оцінки за формулою PERT
+        $estimate = ($optimistic + 4 * $likely + $pessimistic) / 6;
+
+        // Повернення результату на сторінку з результатами
+        return view('tasks.estimate_result', compact('task', 'estimate'));
+    }
 }
+

@@ -14,11 +14,24 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         if (auth()->check()) {
-            $tasks = auth()->user()->tasks()->orderBy('id', 'desc')->get();
-            return view('index', ['tasks' => $tasks, 'message' => null]);
+            $sortBy = $request->get('sort_by', 'created_at'); // За замовчуванням сортування за датою створення
+            $order = $request->get('order', 'desc');         // За замовчуванням порядок спадний
+            $allowedSortBy = ['name', 'created_at'];
+            $allowedOrder = ['asc', 'desc'];
+            if (!in_array($sortBy, $allowedSortBy) || !in_array($order, $allowedOrder)) {
+                $sortBy = 'created_at';
+                $order = 'desc';
+            }
+            $tasks = Task::where('user_id', auth()->id())
+                ->orderBy($sortBy, $order)
+                ->get();
+
+            //return view('index', compact('tasks', 'sortBy', 'order'));
+            //$tasks = auth()->user()->tasks()->orderBy('id', 'desc')->get();
+            return view('index', ['tasks' => $tasks, 'message' => null], compact('tasks', 'sortBy', 'order'));
         } else {
             $message = ' You are not logged in, please log in to see and create tasks';
             return view('index', ['tasks' => collect(), 'message' => $message]);

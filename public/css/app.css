@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+select.form-select {
+    width: auto;
+    min-width: 150px; /* Мінімальна ширина, якщо текст занадто короткий */
+}

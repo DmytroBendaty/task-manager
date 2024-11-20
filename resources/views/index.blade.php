@@ -31,6 +31,18 @@
                 </a>
             </div>
         @else
+            <form method="GET" action="{{ route('index') }}" class="d-flex align-items-center mb-4 gap-2">
+                <label for="sort_by" class="form-label fw-bold">Sort by:</label>
+                <select name="sort_by" id="sort_by" class="form-select w-25" onchange="this.form.submit()">
+                    <option value="created_at" {{ request('sort_by') === 'created_at' ? 'selected' : '' }}>За датою створення</option>
+                    <option value="title" {{ request('sort_by') === 'title' ? 'selected' : '' }}>За назвою</option>
+                </select>
+
+                <select name="order" id="order" class="form-select w-25" onchange="this.form.submit()">
+                    <option value="asc" {{ request('order') === 'asc' ? 'selected' : '' }}>За зростанням</option>
+                    <option value="desc" {{ request('order') === 'desc' ? 'selected' : '' }}>За спаданням</option>
+                </select>
+            </form>
             @foreach($tasks as $task)
                 <div class="card mt-3">
                     <div class="card-header">
@@ -55,7 +67,7 @@
                                 <small>Last Updated - {{ $task->updated_at->diffForHumans() }} </small>
                             </div>
                             <div class="float-end">
-                                <a href="{{ route('tasks.estimate', $task->id) }}" class="btn btn-success">
+                                <a href="{{ route('tasks.estimate', $task->id) }}" class="btn btn-info">
                                     <i class="fa-solid fa-calculator"></i> Estimate
                                 </a>
                                 <a href="{{ route('task.edit', $task->id) }}" class="btn btn-success">

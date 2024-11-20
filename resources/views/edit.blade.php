@@ -9,7 +9,7 @@
     <div>
         <div class="float-end">
             <a href="{{ route('index') }}" class="btn btn-info">
-                <i class="fa fa-arrow-left"></i> All Task
+                <i class="fa fa-arrow-left"></i> Back
             </a>
         </div>
         <div class="clearfix"></div>

@@ -12,6 +12,7 @@
     {{--JS--}}
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="{{ asset('app/public/css/app.css') }}">
 </head>
 <body class="antialiased">
 {{-- NAVBAR --}}

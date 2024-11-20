@@ -1,12 +1,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-select, option {
-    width: 250px;
-}
-
-option {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}

@@ -18,6 +18,7 @@
             <div class="clearfix"></div>
         </div>
     @endauth
+
 {{--    @if ($message)--}}
 {{--        <p>{{ $message }}</p>--}}
 {{--    @else--}}
@@ -32,11 +33,12 @@
             </div>
         @else
             <div>
+{{--                <livewire:task-order />--}}
                 <ul id="task-list" wire:sortable="updateTaskOrder">
                     @foreach($tasks as $task)
                         <li wire:sortable.item="{{ $task->id }}" wire:key="task-{{ $task->id }}">
                             <div wire:sortable.handle style="cursor: move;">
-                                {{ $task->name }}
+                                {{ $task->title }}
                             </div>
                         </li>
                     @endforeach

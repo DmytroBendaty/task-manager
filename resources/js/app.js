@@ -3,9 +3,11 @@ import './bootstrap';
 import Alpine from 'alpinejs';
 
 import Sortable from 'sortablejs';
+import 'livewire';
+import 'livewire-sortable';
 import { Livewire } from 'livewire-sortable';
 
-document.addEventListener('livewire:load', () => {
+document.addEventListener('DOMContentLoaded', function ()  {
     const list = document.getElementById('task-list');
     Sortable.create(list, {
         animation: 150,

@@ -25,6 +25,6 @@ class TaskOrder extends Component
 
     public function render()
     {
-        return view('livewire.task-order', ['tasks' => $this->tasks]);
+        return view('livewire.task-order');
     }
 }

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
 {
+    protected $fillable = ['order'];
     use HasFactory;
     public function user()
     {

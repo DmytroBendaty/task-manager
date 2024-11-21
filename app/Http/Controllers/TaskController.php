@@ -182,5 +182,11 @@ class TaskController extends Controller
         // Повернення результату на сторінку з результатами
         return view('estimate_result', compact('task', 'estimate'));
     }
+
+    public function dragAndDrop()
+    {
+        $tasks = Task::where('user_id', auth()->id())->orderBy('order', 'asc')->get(); // Приклад отримання завдань
+        return view('\livewire\task-order', compact('tasks'));
+    }
 }
 

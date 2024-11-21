@@ -18,7 +18,6 @@ class AddOrderToTasksTable extends Migration
         });
     }
 
-
     /**
      * Reverse the migrations.
      *

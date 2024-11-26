@@ -9,6 +9,10 @@
     <br>
     <br>
     @auth()
+        <div class="container">
+            <h1>Drag and Drop Tasks</h1>
+{{--            <livewire:task-order />--}}
+        </div>
    <div>
        <div class="float-end">
            <a href="{{ route('task.create') }}" class="btn btn-info">

@@ -25,7 +25,7 @@ class TaskController extends Controller
                 $sortBy = 'created_at';
                 $order = 'desc';
             }
-            $tasks = Task::where('user_id', auth()->id())
+            $tasks = Task::query()->where('user_id', auth()->id())
                 ->orderBy($sortBy, $order)
                 ->get();
 
@@ -130,7 +130,7 @@ class TaskController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $task = Task::findOrFail($id);
+        $task = Task::query()->findOrFail($id);
         $request->validate([
             'title' => 'required',
         ]);
@@ -150,20 +150,20 @@ class TaskController extends Controller
      */
     public function destroy($id)
     {
-        $task = Task::findOrFail($id);
+        $task = Task::query()->findOrFail($id);
         $task->delete();
         return redirect()->route('index');
     }
 
     public function showEstimateForm($id)
     {
-        $task = Task::findOrFail($id);
+        $task = Task::query()->findOrFail($id);
         return view('estimate', compact('task'));
     }
 
     public function calculateEstimate(Request $request, $id)
     {
-        $task = Task::findOrFail($id);
+        $task = Task::query()->findOrFail($id);
         // Валідація вхідних даних
         $request->validate([
             'optimistic_time' => 'required|numeric|min:0',
@@ -185,7 +185,7 @@ class TaskController extends Controller
 
     public function dragAndDrop()
     {
-        $tasks = Task::where('user_id', auth()->id())->orderBy('order', 'asc')->get(); // Приклад отримання завдань
+        $tasks = Task::query()->where('user_id', auth()->id())->orderBy('order', 'asc')->get(); // Приклад отримання завдань
         return view('\livewire\task-order', compact('tasks'));
     }
 }

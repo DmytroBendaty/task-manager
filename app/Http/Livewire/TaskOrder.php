@@ -11,16 +11,16 @@ class TaskOrder extends Component
 
     public function mount()
     {
-        $this->tasks = Task::sortByDesc('order')->get();
+        $this->tasks = Task::query()->orderBy('order')->get();
     }
 
     public function updateOrder($orderedIds)
     {
         foreach ($orderedIds as $index => $id) {
-            Task::where('id', $id)->update(['order' => $index]);
+            Task::query()->where('id', $id)->update(['order' => $index]);
         }
 
-        $this->tasks = Task::sortByDesc('order')->get();
+        $this->tasks = Task::query()->orderBy('order')->get();
     }
 
     public function render()

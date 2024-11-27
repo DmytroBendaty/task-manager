@@ -34,6 +34,7 @@
         @else
             <div>
 {{--                <livewire:task-order />--}}
+                <br>
                 <ul id="task-list" class="list-group">
                     @foreach($tasks as $task)
                         <li class="list-group-item" data-id="{{ $task->id }}">

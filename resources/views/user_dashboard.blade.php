@@ -13,7 +13,7 @@
                     <input type="email" id="email" name="email" value="{{ $user->email }}" required>
                 </div>
                 <br>
-                <button type="submit">Update</button>
+                <button type="submit" class="btn btn-info">Update</button>
             </form>
         </div>
         <br>
@@ -37,7 +37,21 @@
                             <span class="badge rounded-pill bg-warning text-dark">
                             {{ $task->created_at->diffForHumans() }}
                         </span>
-                            {{ $task->author }}
+                            <div class="float-end">
+                                <a href="{{ route('tasks.estimate', $task->id) }}" class="btn btn-info">
+                                    <i class="fa-solid fa-calculator"></i>
+                                </a>
+                                <a href="{{ route('task.edit', $task->id) }}" class="btn btn-success">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                                <form action="{{ route('task.destroy', $task->id) }}" style="display: inline" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </form>
+                            </div>
                         </div>
                         <div class="card-body">
                             <div class="card-text">
@@ -53,19 +67,6 @@
                                     @endif
                                     <small>Last Updated - {{ $task->updated_at->diffForHumans() }} </small>
                                 </div>
-                                <div class="float-end">
-                                    <a href="{{ route('task.edit', $task->id) }}" class="btn btn-success">
-                                        <i class="fa fa-edit"></i> Edit
-                                    </a>
-                                    <form action="{{ route('task.destroy', $task->id) }}" style="display: inline" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">
-                                            <i class="fa fa-trash"></i> Delete
-                                        </button>
-                                    </form>
-                                </div>
-                                <div class="clearfix"></div>
                             </div>
                         </div>
                     </div>

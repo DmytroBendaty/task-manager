@@ -15,13 +15,13 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         if (Auth::check()){
-            return redirect()->intended(route('index'));
+            return redirect()->intended(route('/'));
         }
 
         $formFields = $request->only(['email', 'password']);
 
         if(Auth::attempt($formFields)){
-            return redirect()->intended('index');
+            return redirect()->intended('/');
         }
 
         return redirect(route('user.login'))->withErrors([
@@ -29,3 +29,4 @@ class LoginController extends Controller
         ]);
     }
 }
+

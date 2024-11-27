@@ -11,7 +11,7 @@ class TaskOrder extends Component
 
     public function mount()
     {
-        $this->tasks = Task::orderBy('order')->get();
+        $this->tasks = Task::sortByDesc('order')->get();
     }
 
     public function updateOrder($orderedIds)
@@ -20,7 +20,7 @@ class TaskOrder extends Component
             Task::where('id', $id)->update(['order' => $index]);
         }
 
-        $this->tasks = Task::orderBy('order')->get();
+        $this->tasks = Task::sortByDesc('order')->get();
     }
 
     public function render()

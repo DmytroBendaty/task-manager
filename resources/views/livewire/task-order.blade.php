@@ -42,21 +42,21 @@
                     @endforeach
                 </ul>
             </div>
-            @push('scripts')
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
-                <script>
-                    document.addEventListener('DOMContentLoaded', () => {
-                        let list = document.getElementById('tasks-list');
-                        let sortable = new Sortable(list, {
-                            animation: 150,
-                            onEnd: function(evt) {
-                                let orderedIds = Array.from(list.children).map(item => item.dataset.id);
-                            @this.updateOrder(orderedIds);
-                            }
-                        });
-                    });
-                </script>
-            @endpush
+{{--            @push('scripts')--}}
+{{--                <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>--}}
+{{--                <script>--}}
+{{--                    document.addEventListener('DOMContentLoaded', () => {--}}
+{{--                        let list = document.getElementById('tasks-list');--}}
+{{--                        let sortable = new Sortable(list, {--}}
+{{--                            animation: 150,--}}
+{{--                            onEnd: function(evt) {--}}
+{{--                                let orderedIds = Array.from(list.children).map(item => item.dataset.id);--}}
+{{--                            @this.updateOrder(orderedIds);--}}
+{{--                            }--}}
+{{--                        });--}}
+{{--                    });--}}
+{{--                </script>--}}
+{{--            @endpush--}}
         @endif
 {{--    @endif--}}
     {{-- @auth()

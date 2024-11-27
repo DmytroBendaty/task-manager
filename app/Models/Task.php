@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Task_backup extends Model
+class Task extends Model
 {
     protected $fillable = ['order'];
     use HasFactory;
@@ -14,4 +14,3 @@ class Task_backup extends Model
         return $this->belongsTo(User::class);
     }
 }
-

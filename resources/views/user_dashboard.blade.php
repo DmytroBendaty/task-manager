@@ -19,6 +19,48 @@
         <br>
         <br>
         <div>
+            <h2>Statistics</h2>
+            <canvas id="taskChart"></canvas>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var ctx = document.getElementById('taskChart').getContext('2d');
+            var taskChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Done', 'Todo', 'In Progress'],
+                    datasets: [{
+                        label: 'Tasks',
+                        data: [
+                            {{ $completedTasks }},
+                            {{ $pendingTasks }},
+                            {{ $inProgressTasks }}
+                        ],
+                        backgroundColor: [
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(153, 102, 255, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(153, 102, 255, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+        <div>
             <h2>Your Tasks</h2>
             @if ($tasks->isEmpty())
                 <div class="alert alert-danger p-2">
@@ -75,46 +117,46 @@
         </div>
         <br>
         <br>
-        <div>
-            <h2>Statistics</h2>
-            <canvas id="taskChart"></canvas>
-        </div>
-    </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var ctx = document.getElementById('taskChart').getContext('2d');
-            var taskChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['Done', 'Todo', 'In Progress'],
-                    datasets: [{
-                        label: 'Tasks',
-                        data: [
-                            {{ $completedTasks }},
-                            {{ $pendingTasks }},
-                            {{ $inProgressTasks }}
-                        ],
-                        backgroundColor: [
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(153, 102, 255, 0.2)'
-                        ],
-                        borderColor: [
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(153, 102, 255, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-        });
-    </script>
+{{--        <div>--}}
+{{--            <h2>Statistics</h2>--}}
+{{--            <canvas id="taskChart"></canvas>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--    <script>--}}
+{{--        document.addEventListener('DOMContentLoaded', function () {--}}
+{{--            var ctx = document.getElementById('taskChart').getContext('2d');--}}
+{{--            var taskChart = new Chart(ctx, {--}}
+{{--                type: 'bar',--}}
+{{--                data: {--}}
+{{--                    labels: ['Done', 'Todo', 'In Progress'],--}}
+{{--                    datasets: [{--}}
+{{--                        label: 'Tasks',--}}
+{{--                        data: [--}}
+{{--                            {{ $completedTasks }},--}}
+{{--                            {{ $pendingTasks }},--}}
+{{--                            {{ $inProgressTasks }}--}}
+{{--                        ],--}}
+{{--                        backgroundColor: [--}}
+{{--                            'rgba(75, 192, 192, 0.2)',--}}
+{{--                            'rgba(255, 206, 86, 0.2)',--}}
+{{--                            'rgba(153, 102, 255, 0.2)'--}}
+{{--                        ],--}}
+{{--                        borderColor: [--}}
+{{--                            'rgba(75, 192, 192, 1)',--}}
+{{--                            'rgba(255, 206, 86, 1)',--}}
+{{--                            'rgba(153, 102, 255, 1)'--}}
+{{--                        ],--}}
+{{--                        borderWidth: 1--}}
+{{--                    }]--}}
+{{--                },--}}
+{{--                options: {--}}
+{{--                    scales: {--}}
+{{--                        y: {--}}
+{{--                            beginAtZero: true--}}
+{{--                        }--}}
+{{--                    }--}}
+{{--                }--}}
+{{--            });--}}
+{{--        });--}}
+{{--    </script>--}}
 @endsection

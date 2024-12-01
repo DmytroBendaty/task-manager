@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@media (max-width: 768px) {
+    .sort-dropdown {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .task-item {
+        font-size: 14px;
+        padding: 5px;
+    }
+}

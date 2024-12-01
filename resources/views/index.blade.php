@@ -37,6 +37,22 @@
         @else
             <form method="GET" action="{{ route('index') }}" class="d-flex align-items-center mb-4 gap-2">
                 <label for="sort_by" class="form-label fw-bold">Sort by:</label>
+
+{{--                <div class="row">--}}
+{{--                    <div class="col-12 col-md-6">--}}
+{{--                        <select name="sort_by" id="sort_by" class="form-select w-25" onchange="this.form.submit()">--}}
+{{--                            <option value="created_at" {{ request('sort_by') === 'created_at' ? 'selected' : '' }}>За датою створення</option>--}}
+{{--                            <option value="title" {{ request('sort_by') === 'title' ? 'selected' : '' }}>За назвою</option>--}}
+{{--                        </select>--}}
+{{--                    </div>--}}
+{{--                    <div class="col-12 col-md-6">--}}
+{{--                        <select name="sort_by" id="sort_by" class="form-select w-25" onchange="this.form.submit()">--}}
+{{--                            <option value="asc" {{ request('order') === 'asc' ? 'selected' : '' }}>За зростанням</option>--}}
+{{--                            <option value="desc" {{ request('order') === 'desc' ? 'selected' : '' }}>За спаданням</option>--}}
+{{--                        </select>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+
                 <select name="sort_by" id="sort_by" class="form-select w-25" onchange="this.form.submit()">
                     <option value="created_at" {{ request('sort_by') === 'created_at' ? 'selected' : '' }}>За датою створення</option>
                     <option value="title" {{ request('sort_by') === 'title' ? 'selected' : '' }}>За назвою</option>

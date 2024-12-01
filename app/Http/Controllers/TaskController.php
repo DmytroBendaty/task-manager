@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
@@ -17,14 +18,24 @@ class TaskController extends Controller
     public function index(Request $request)
     {
         if (auth()->check()) {
+            $user = Auth::user();
             $sortBy = $request->get('sort_by', 'created_at'); // За замовчуванням сортування за датою створення
-            $order = $request->get('order', 'desc');         // За замовчуванням порядок спадний
-            $allowedSortBy = ['name', 'created_at'];
-            $allowedOrder = ['asc', 'desc'];
-            if (!in_array($sortBy, $allowedSortBy) || !in_array($order, $allowedOrder)) {
+            $order = $request->get('order', 'asc');         // За замовчуванням порядок спадний
+//            $allowedSortBy = ['name', 'created_at'];
+//            $allowedOrder = ['asc', 'desc'];
+            $validSortBy = ['created_at', 'title'];
+            if (!in_array($sortBy, $validSortBy)) {
                 $sortBy = 'created_at';
-                $order = 'desc';
             }
+            $validOrder = ['asc', 'desc'];
+            if (!in_array($order, $validOrder)) {
+                $order = 'asc';
+            }
+//            $tasks = Task::query()->orderBy($sortBy, $order)->get();
+//            if (!in_array($sortBy, $allowedSortBy) || !in_array($order, $allowedOrder)) {
+//                $sortBy = 'created_at';
+//                $order = 'desc';
+//            }
             $tasks = Task::query()->where('user_id', auth()->id())
                 ->orderBy($sortBy, $order)
                 ->get();

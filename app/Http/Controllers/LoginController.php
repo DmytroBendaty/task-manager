@@ -8,10 +8,6 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-//    protected function login(Request $request, $user)
-//    {
-//        return redirect()->route('tasks.index');
-//    }
     public function login(Request $request)
     {
         if (Auth::check()){
@@ -35,6 +31,5 @@ class LoginController extends Controller
         $request->session()->regenerateToken();
         return redirect('/');
     }
-
 }
 

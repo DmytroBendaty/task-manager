@@ -21,8 +21,6 @@ class TaskController extends Controller
             $user = Auth::user();
             $sortBy = $request->get('sort_by', 'created_at'); // За замовчуванням сортування за датою створення
             $order = $request->get('order', 'asc');         // За замовчуванням порядок спадний
-//            $allowedSortBy = ['name', 'created_at'];
-//            $allowedOrder = ['asc', 'desc'];
             $validSortBy = ['created_at', 'title'];
             if (!in_array($sortBy, $validSortBy)) {
                 $sortBy = 'created_at';
@@ -31,24 +29,15 @@ class TaskController extends Controller
             if (!in_array($order, $validOrder)) {
                 $order = 'asc';
             }
-//            $tasks = Task::query()->orderBy($sortBy, $order)->get();
-//            if (!in_array($sortBy, $allowedSortBy) || !in_array($order, $allowedOrder)) {
-//                $sortBy = 'created_at';
-//                $order = 'desc';
-//            }
             $tasks = Task::query()->where('user_id', auth()->id())
                 ->orderBy($sortBy, $order)
                 ->get();
-
-            //return view('index', compact('tasks', 'sortBy', 'order'));
-            //$tasks = auth()->user()->tasks()->orderBy('id', 'desc')->get();
             return view('index', ['tasks' => $tasks, 'message' => null], compact('tasks', 'sortBy', 'order'));
         } else {
             $message = ' You are not logged in, please log in to see and create tasks';
             return view('index', ['tasks' => collect(), 'message' => $message]);
         }
     }
-
     /**
      * Show the form for creating a new resource.s
      *

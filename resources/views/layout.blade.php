@@ -33,9 +33,6 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('task.create') }}">New Task</a>
                 </li>
-{{--                <li class="nav-item">--}}
-{{--                    <a class="nav-link" href="{{ route('tasks.dragAndDrop') }}">DragAndDrop</a>--}}
-{{--                </li>--}}
                 @endauth
             </ul>
             <ul class="navbar-nav ms-auto">
